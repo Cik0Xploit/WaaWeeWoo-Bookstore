@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once 'connectdb.php'; // connect to database
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

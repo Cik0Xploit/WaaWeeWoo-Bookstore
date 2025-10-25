@@ -1,52 +1,104 @@
-<?php include "header.php"; ?>
+<?php
+include 'function/authenticate.php';
+include 'header.php';
+?>
+
 <link rel="stylesheet" href="css/home.css">
 
-<main class="homepage">
+<!-- ===== HERO SECTION ===== -->
+<section class="hero">
+  <div class="hero-text-box">
+    <small>New Arrivals Every Week</small>
+    <h1>Discover Your Next Favorite Book</h1>
+    <p>Explore thousands of titles across every genre — from bestsellers to timeless classics. Find your next great read today.</p>
+    <div class="hero-buttons">
+      <a href="books.php">Browse Collection</a>
+      <a href="bestsellers.php">View Bestsellers</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to <span>WaaWeeWoo Bookstore</span></h1>
-            <p>Your one-stop destination for great reads and endless imagination.</p>
-            <a href="books.php" class="btn-primary">Browse Books</a>
-        </div>
-    </section>
+<!-- ===== CATEGORY SECTION ===== -->
+<section class="categories container">
+  <h2>Browse by Category</h2>
+  <div class="category-grid">
+    <?php
+    $descriptions = [
+        'Fiction' => 'Immerse yourself in imaginative stories, from classics to contemporary novels that spark creativity and adventure.',
+        'Self-help / Business' => 'Practical guides and strategies to improve personal growth, career, leadership, and business skills.',
+        'Biography / Science' => 'Explore real-life stories of remarkable people and scientific discoveries that shaped our world.',
+        'Programming / Technology' => 'Learn the latest in coding, software development, and emerging technologies for all skill levels.',
+        'Light Novel' => 'Enjoy fun, engaging Japanese-style stories with illustrations, perfect for casual reading.'
+    ];
 
-    <!-- Featured Categories -->
-    <section class="featured">
-        <h2>✨ Featured Categories</h2>
-        <div class="category-grid">
-            <div class="category-card">
-                <img src="images/fiction.jpg" alt="Fiction">
-                <h3>Fiction</h3>
-            </div>
-            <div class="category-card">
-                <img src="images/nonfiction.jpg" alt="Non-Fiction">
-                <h3>Non-Fiction</h3>
-            </div>
-            <div class="category-card">
-                <img src="images/scifi.jpg" alt="Science Fiction">
-                <h3>Sci-Fi</h3>
-            </div>
-            <div class="category-card">
-                <img src="images/children.jpg" alt="Children’s Books">
-                <h3>Children</h3>
-            </div>
-        </div>
-    </section>
+    $query = "SELECT * FROM categories ORDER BY id ASC";
+    $result = $conn->query($query);
 
-    <!-- About Section -->
-    <section class="about">
-        <h2>📖 About WaaWeeWoo</h2>
-        <p>
-            At WaaWeeWoo Bookstore, we believe every book holds a story waiting to change your world.
-            Whether you’re chasing fantasy realms, business insights, or children’s adventures —
-            we bring the joy of reading closer to you.
-        </p>
-        <a href="aboutUs.php" class="btn-secondary">Learn More</a>
-    </section>
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $icon = '📚';
+            switch ($row['name']) {
+                case 'Self-help / Business': $icon = '💼'; break;
+                case 'Biography / Science': $icon = '🔬'; break;
+                case 'Programming / Technology': $icon = '💻'; break;
+                case 'Light Novel': $icon = '📖'; break;
+            }
 
+            echo '<div class="category-card">';
+            echo '<div class="category-icon">'.$icon.'</div>';
+            echo '<h3>'.htmlspecialchars($row['name']).'</h3>';
+            echo '<p>'.($descriptions[$row['name']] ?? '').'</p>';
+            echo '</div>';
+        }
+    } else {
+        echo '<p>No categories found.</p>';
+    }
+    ?>
+  </div>
+</section>
 
-</main>
+<!-- ===== FEATURED BOOKS SECTION ===== -->
+<section class="featured-books container">
+    <div class="featured-header">
+    <div>
+        <h2>Featured Books</h2>
+        <p>Hand-picked selections from our top curators</p>
+    </div>
+    <a href="books.php">View All →</a>
+  </div>    
+  <div class="book-grid">
+    <?php
+    $bookQuery = "SELECT * FROM books WHERE id BETWEEN 1 AND 4 ORDER BY id ASC";
+    $bookResult = $conn->query($bookQuery);
 
-<?php include "footer.php"; ?>
+    if ($bookResult->num_rows > 0) {
+        while ($book = $bookResult->fetch_assoc()) {
+            // Get category name
+            $catQuery = "SELECT name FROM categories WHERE id = " . intval($book['category_id']);
+            $catResult = $conn->query($catQuery);
+            $categoryName = $catResult->num_rows > 0 ? $catResult->fetch_assoc()['name'] : 'Uncategorized';
+
+            echo '<a href="book_detailS.php?id='.$book['id'].'" class="book-link">';
+            echo '<div class="book-card">';
+            echo '<div class="book-image">';
+            echo '<img src="images/'.$book['cover_image'].'" alt="'.htmlspecialchars($book['title']).'">';
+            echo '<span class="book-tag">'.htmlspecialchars($categoryName).'</span>';
+            echo '</div>';
+            echo '<div class="book-info">';
+            echo '<h3>'.htmlspecialchars($book['title']).'</h3>';
+            echo '<p>by '.htmlspecialchars($book['author']).'</p>';
+            echo '<div class="book-price">$'.number_format($book['price'], 2).'</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</a>';
+        }
+    } else {
+        echo '<p>No featured books available.</p>';
+    }
+    ?>
+  </div>
+</section>
+
+<?php
+include 'footer.php';
+?>

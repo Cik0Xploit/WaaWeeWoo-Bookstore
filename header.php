@@ -40,6 +40,7 @@ $loggedIn = isset($_SESSION['user_id']);
                 <div class="dropdown-menu">
                     <a href="books.php">All Books</a>
                     <a href="categories.php">Categories</a>
+                    <a href="bestsellers.php">Bestsellers</a>
                 </div>
             </div>
 
@@ -54,7 +55,7 @@ $loggedIn = isset($_SESSION['user_id']);
 
             <!-- User Menu -->
             <div class="dropdown">
-                <button type="button" class="dropdown-btn">Menu ▾</button>
+                <button type="button" class="dropdown-btn">☰</button>
                 <div class="dropdown-menu right">
                     <a href="profile.php">👤 Profile</a>
                     <hr>

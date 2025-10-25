@@ -93,7 +93,7 @@ $total_price = 0;
             <a href="checkout.php" class="checkout-btn">Proceed to Checkout</a>
         </div>
     <?php else: ?>
-        <p class="empty-cart">Your cart is empty. <a href="index.php">Continue Shopping</a></p>
+        <p class="empty-cart">Your cart is empty. <a href="books.php">Continue Shopping</a></p>
     <?php endif; ?>
 </div>
 
