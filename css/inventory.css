@@ -1,0 +1,125 @@
+/* Custom styles for the Book Inventory table */
+
+/* Ensure heading and paragraph text in the main content are left-aligned for a better table layout */
+.main-content h1,
+.main-content p {
+    text-align: left; 
+}
+
+/* Inventory Table Container/Base Styles */
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* Ensures border-radius applies to corners */
+}
+
+/* Table Headers */
+.inventory-table th,
+.inventory-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0; /* Light line separator */
+}
+
+.inventory-table th {
+    background-color: #f8f9fa;
+    color: #3a86ff; /* Match the sidebar color */
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Table Rows */
+.inventory-table tr:hover {
+    background-color: #f5f5f5; /* Light highlight on hover */
+}
+
+/* Specific Cell Styles */
+.image-cell {
+    text-align: center;
+    width: 100px; /* Consistent width for the image column */
+}
+
+.image-cell img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.action-header {
+    text-align: center;
+}
+
+.action-cell {
+    text-align: center;
+    width: 80px; /* Keep action buttons concise */
+}
+
+/* Action Links/Buttons */
+.action-link {
+    display: block; /* Make the entire cell area clickable for action */
+    padding: 6px 0;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.action-link.update {
+    color: #2c6ed5;
+}
+
+.action-link.delete {
+    color: #ff006e;
+}
+
+.action-link:hover {
+    text-decoration: underline;
+}
+
+/* Add New Book Button Style (Separate from table) */
+.add-book-button {
+    background: #4caf50; /* A friendly green color */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Ensure the button is a block element to properly align it to the right */
+    display: inline-block;
+}
+
+.add-book-button:hover {
+    background: #388e3c;
+}
+/* Pagination Styles */
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 0 5px;
+    border: 1px solid #3a86ff; /* Match primary color */
+    border-radius: 4px;
+    text-decoration: none;
+    color: #3a86ff;
+    font-weight: 500;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background: #e0f0ff;
+}
+
+.btn.active {
+    background: #3a86ff;
+    color: white;
+    border-color: #3a86ff;
+    pointer-events: none; /* Disable click on the active page */
+}

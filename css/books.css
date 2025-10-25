@@ -1,0 +1,148 @@
+/* ===== Books Page ===== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f8fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Section ===== */
+.books-section {
+    width: 90%;
+    margin: 0 auto;
+    padding: 40px 0 80px 0;
+}
+
+/* ===== Toast Message ===== */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeInOut 4s ease forwards;
+    z-index: 9999;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    10%, 90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* ===== Page Title ===== */
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* ===== Grid Layout (4 per row) ===== */
+.books-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* ===== Book Card ===== */
+.book-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: calc(25% - 25px); /* 4 per row */
+    min-width: 240px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.book-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.book-card h3 {
+    font-size: 16px;
+    color: #222;
+    margin: 8px 0;
+}
+
+.book-card .author {
+    font-size: 14px;
+    color: #666;
+    margin: 4px 0;
+}
+
+.book-card .category {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 6px;
+}
+
+.book-card .price {
+    font-size: 15px;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* ===== Buttons ===== */
+.btn {
+    background: #4B5945;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.2s;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background: #3b4635;
+    transform: scale(1.05);
+}
+
+.active {
+    background: #3b4635;
+}
+
+/* ===== Pagination ===== */
+.pagination {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* ===== Responsive Layout ===== */
+@media (max-width: 1024px) {
+    .book-card {
+        width: calc(33.33% - 25px); /* 3 per row */
+    }
+}
+
+@media (max-width: 768px) {
+    .book-card {
+        width: calc(50% - 25px); /* 2 per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .book-card {
+        width: 100%; /* 1 per row */
+    }
+}
+    

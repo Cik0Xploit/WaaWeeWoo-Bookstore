@@ -1,0 +1,223 @@
+/* ===== GLOBAL FOOTER STYLING ===== */
+.site-footer {
+    background: #0f172a; /* deep navy */
+    color: #d1d5db;
+    font-family: 'Poppins', sans-serif;
+    padding: 4rem 1.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle background overlay gradient */
+.site-footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(124, 58, 237, 0.1), transparent 80%);
+    z-index: 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== GRID STRUCTURE ===== */
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 2.5rem;
+}
+
+/* ===== BRAND SECTION ===== */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-logo {
+    background-color: #7c3aed; /* purple */
+    color: white;
+    font-weight: 700;
+    font-size: 1.4rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(124, 58, 237, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.brand-logo:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 12px rgba(124, 58, 237, 0.6);
+}
+
+.brand-name {
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.25rem;
+}
+
+.brand-desc {
+    margin-top: 0.8rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+}
+
+/* ===== SOCIAL ICONS ===== */
+.social-icons {
+    display: flex;
+    gap: 14px;
+    margin-top: 1.2rem;
+}
+
+.social-icons a {
+    color: #cbd5e1;
+    font-size: 1.25rem;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.social-icons a:hover {
+    background-color: #7c3aed;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* ===== COLUMN HEADERS ===== */
+.footer-col h3 {
+    color: #fff;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+    position: relative;
+}
+
+.footer-col h3::after {
+    content: "";
+    display: block;
+    width: 35px;
+    height: 2px;
+    background-color: #7c3aed;
+    margin-top: 6px;
+    border-radius: 2px;
+}
+
+/* ===== LINK LIST ===== */
+.footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 0.6rem;
+}
+
+.footer-col ul li a {
+    color: #d1d5db;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.footer-col ul li a::before {
+    content: "›";
+    position: absolute;
+    left: -15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #fff;
+    padding-left: 10px;
+}
+
+.footer-col ul li a:hover::before {
+    opacity: 1;
+    left: 0;
+}
+
+/* ===== DIVIDER ===== */
+.footer-divider {
+    border: none;
+    border-top: 1px solid #1e293b;
+    margin: 3rem 0 2rem;
+}
+
+/* ===== BOTTOM SECTION ===== */
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.footer-bottom p {
+    color: #94a3b8;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: #d1d5db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 768px) {
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-footer {
+        padding: 3rem 1rem;
+    }
+
+    .brand-logo {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+    }
+
+    .brand-name {
+        font-size: 1rem;
+    }
+
+    .footer-col h3 {
+        font-size: 0.9rem;
+    }
+}

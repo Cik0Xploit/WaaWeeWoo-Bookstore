@@ -1,0 +1,70 @@
+.cart-container {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #F8FAFC, #D9EAFD);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    font-family: 'Poppins', sans-serif;
+}
+
+.cart-container h1 {
+    text-align: center;
+    color: #9AA6B2;
+    margin-bottom: 30px;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table th, .cart-table td {
+    border-bottom: 1px solid #BCCCDC;
+    padding: 12px;
+    text-align: center;
+}
+
+.update-form input[type="number"] {
+    width: 60px;
+    text-align: center;
+    padding: 5px;
+}
+
+.update-form button {
+    background: #4B5945;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.remove-btn {
+    background: #b23b3b;
+    color: white;
+    padding: 6px 12px;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.checkout-btn {
+    background: #4B5945;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.cart-actions {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.empty-cart {
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}

@@ -1,0 +1,139 @@
+body {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #b5eaea, #ffd6e0);
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container */
+.book-details-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+}
+
+/* Title */
+.book-title {
+    text-align: center;
+    color: #3a86ff;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* Flex layout */
+.book-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Book Cover */
+.book-cover {
+    flex: 1;
+    text-align: center;
+}
+
+.book-cover img {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-cover img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* Info Section */
+.book-info {
+    flex: 2;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.book-info strong {
+    color: #ff006e;
+}
+
+.price {
+    color: #2c6ed5;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Description */
+.book-desc {
+    margin-top: 10px;
+    background: #f9f9f9;
+    border-left: 4px solid #3a86ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+/* Buttons */
+.book-actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn-primary,
+.btn-secondary {
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #3a86ff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2c6ed5;
+    box-shadow: 0 3px 10px rgba(58, 134, 255, 0.4);
+}
+
+.btn-secondary {
+    background-color: #ff006e;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #d0005a;
+    box-shadow: 0 3px 10px rgba(255, 0, 110, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .book-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .book-cover img {
+        width: 200px;
+        height: 280px;
+    }
+
+    .book-info {
+        text-align: center;
+    }
+
+    .book-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+}

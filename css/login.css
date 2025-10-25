@@ -1,0 +1,128 @@
+/* Global Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* stack logo + container vertically */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Centered Logo */
+.logo {
+    display: block;
+    width: 300px;         /* smaller logo */
+    height: auto;
+    margin-bottom: 20px;  /* space between logo and box */
+}
+
+/* Login Box */
+.login-container {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(4px);
+}
+
+/* Title */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+/* Form Labels and Inputs */
+form label {
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
+    color: #333;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+form input:focus {
+    border-color: oklch(.511 .262 276.966);
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+/* Button */
+.btn {
+    width: 100%;
+    background: oklch(.511 .262 276.966);
+    color: white;
+    border: none;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+/* Alerts */
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.alert.error {
+    background-color: #ffdddd;
+    color: #d8000c;
+}
+
+.alert.success {
+    background-color: #ddffdd;
+    color: #4caf50;
+}
+
+/* Register Link */
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.95rem;
+}
+
+.register-link a {
+    color: oklch(.511 .262 276.966);
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive (Mobile View) */
+@media (max-width: 480px) {
+    .login-container {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .logo {
+        width: 90px;
+        margin-bottom: 15px;
+    }
+}

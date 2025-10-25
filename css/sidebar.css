@@ -1,0 +1,70 @@
+.admin-container {
+    display: flex;
+    height: 100vh;
+    background: #f9fafb;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 240px;
+    background: #3a86ff;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background: #2c6ed5;
+}
+
+.logout {
+    background: #ff006e;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.logout:hover {
+    background: #d0005a;
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centers horizontally */
+    justify-content: flex-start; /* keeps content top-aligned */
+    text-align: center;
+}

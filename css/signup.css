@@ -1,0 +1,165 @@
+/* ===== Global Styles ===== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* stack logo + form vertically */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ===== Centered Logo ===== */
+.logo {
+    display: block;
+    width: 300px; /* balanced logo size */
+    height: auto;
+    margin-bottom: 10px;
+    padding-top: 100px;
+}
+
+/* ===== Register Form Container ===== */
+.register-container {
+    width: 420px;
+    background: rgba(255, 255, 255, 0.95);
+    padding-bottom: 100px;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(4px);
+}
+
+/* ===== Header ===== */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+/* ===== Form Fields ===== */
+form label {
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
+    color: #333;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: oklch(.511 .262 276.966);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* ===== Terms Section ===== */
+.terms {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.terms input[type="checkbox"] {
+    width: 16px;          /* fixed width */
+    height: 16px;
+    margin-right: 8px;
+    transform: scale(1.1);
+    accent-color: oklch(.511 .262 276.966); /* consistent color */
+    cursor: pointer;
+}
+
+.terms label {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.terms a {
+    color: oklch(.511 .262 276.966);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Button ===== */
+.btn {
+    width: 100%;
+    background: oklch(.511 .262 276.966);
+    color: white;
+    border: none;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #3c4a38;
+}
+
+/* ===== Alerts ===== */
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.alert.error {
+    background-color: #ffdddd;
+    color: #d8000c;
+}
+
+.alert.success {
+    background-color: #ddffdd;
+    color: #4caf50;
+}
+
+/* ===== Login Link ===== */
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.95rem;
+}
+
+.login-link a {
+    color: oklch(.511 .262 276.966);
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 480px) {
+    .register-container {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .logo {
+        width: 120px;
+        margin-bottom: 15px;
+    }
+}
