@@ -90,6 +90,7 @@ $total_price = 0;
         </table>
 
         <div class="cart-actions">
+            <a href="books.php" class="continue-shopping-btn">Continue Shopping</a>
             <a href="checkout.php" class="checkout-btn">Proceed to Checkout</a>
         </div>
     <?php else: ?>
