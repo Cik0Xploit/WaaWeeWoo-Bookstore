@@ -44,7 +44,7 @@ $loggedIn = isset($_SESSION['user_id']);
                 </div>
             </div>
 
-            <a href="contact.php">Contact</a>
+            <a href="contact.php">Team Members</a>
             <a href="aboutUs.php">About Us</a>
 
             <!-- Search -->

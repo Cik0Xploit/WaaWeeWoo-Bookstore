@@ -136,7 +136,7 @@ if (!$catResult) {
                             <h3><?= htmlspecialchars($book['title']) ?></h3>
                             <p class="author"><?= htmlspecialchars($book['author']) ?></p>
                             <p class="category"><?= htmlspecialchars($book['category_name']) ?></p>
-                            <p class="price">$<?= number_format($book['price'],2) ?></p>
+                            <p class="price">RM<?= number_format($book['price'],2) ?></p>
                             <?php if ($book['stock']>0): ?>
                                 <a href="cart_add.php?id=<?= $book['id'] ?>" class="btn">🛒 Add to Cart</a>
                             <?php else: ?>

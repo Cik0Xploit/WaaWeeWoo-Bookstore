@@ -1,172 +1,335 @@
-/* ===== PROFILE PAGE ===== */
-.profile-page {
-    max-width: 600px;
-    margin: 80px auto;
-    background: linear-gradient(135deg, #F8FAFC, #D9EAFD);
-    padding: 40px 50px;
-    border-radius: 16px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
-    font-family: 'Poppins', sans-serif;
-    animation: fadeIn 0.5s ease-in-out;
+/* ===== General Layout ===== */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f8f9fc;
+  margin: 0;
+  color: #333;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.container {
+  max-width: 950px;
+  margin: 60px auto;
+  padding: 0 20px;
 }
 
-/* ===== TITLE ===== */
-.profile-page h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #9AA6B2;
-    font-size: 28px;
-    letter-spacing: 1px;
+/* ===== Card Styles ===== */
+.card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+  overflow: hidden;
 }
 
-/* ===== FORM FIELDS ===== */
-.profile-form label {
-    display: block;
-    margin-top: 20px;
-    font-weight: 600;
-    color: #9AA6B2;
-    margin-bottom: 8px;
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 1.2rem 1.8rem;
 }
 
-.profile-form input,
-.profile-form textarea {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid #ccc;
-    border-radius: 8px;
-    margin-top: 6px;
-    font-size: 15px;
-    transition: all 0.2s ease;
-    background-color: #fff;
+.card-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
 }
 
-.profile-form input:focus,
-.profile-form textarea:focus {
-    outline: none;
-    border-color: #4B5945;
-    box-shadow: 0 0 4px rgba(75, 89, 69, 0.3);
-    background-color: #fefefe;
+.card-content {
+  padding: 1.8rem;
 }
 
-.profile-form textarea {
-    resize: vertical;
-    min-height: 80px;
+/* ===== Profile Header ===== */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-/* ===== BUTTON ===== */
-.btn-primary {
-    background-color: #4B5945;
-    color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    margin-top: 25px;
-    width: 100%;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #805ad5, #9f7aea);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
-.btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
+.profile-info h2 {
+  margin: 0;
+  font-size: 1.6rem;
 }
 
-.btn-primary:hover::before {
-    left: 100%;
+.profile-info p {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: #666;
 }
 
-.btn-primary:hover {
-    background-color: #3c4a38;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(75, 89, 69, 0.3);
+/* ===== Tabs ===== */
+.tabs-list {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-.btn-primary:active {
-    transform: translateY(0);
+.tabs-trigger {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 12px 18px;
+  cursor: pointer;
+  color: #666;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
 }
 
-/* ===== ALERT MESSAGES ===== */
-.alert {
-    text-align: center;
-    padding: 12px 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 15px;
-    animation: slideDown 0.3s ease-out;
+.tabs-trigger.active {
+  color: #805ad5;
+  border-color: #805ad5;
 }
 
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+.tabs-trigger:hover {
+  color: #6b46c1;
 }
 
-.alert.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-    box-shadow: 0 2px 8px rgba(21, 87, 36, 0.1);
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+.tabs-trigger.active {
+  background-color: #333;
+  color: #fff;
 }
 
-.alert.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-    box-shadow: 0 2px 8px rgba(114, 28, 36, 0.1);
+/* ===== Grid Form Layout ===== */
+.grid {
+  display: grid;
+  gap: 20px;
 }
 
-/* ===== RESPONSIVE ===== */
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.form-group input {
+  width: 90%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f7fafc;
+  font-size: 0.9rem;
+  transition: border 0.2s ease, background 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: #805ad5;
+  background-color: #fff;
+  outline: none;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  background-color: #805ad5;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #6b46c1;
+}
+
+.btn-secondary {
+  background-color: #edf2f7;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+}
+
+/* ===== Form Actions ===== */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* ===== Message Alerts ===== */
+.message {
+  padding: 12px 16px;
+  margin: 0 1.8rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.message.success {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.message.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* ===== Order History ===== */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.order-info h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.order-date {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.order-status {
+  text-align: right;
+}
+
+.status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.status.pending {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.status.processing {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.status.shipped {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status.delivered {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status.cancelled {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.order-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.order-books {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #333;
+  flex: 1;
+}
+
+.order-total {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #805ad5;
+  white-space: nowrap;
+}
+
+.empty-orders {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.empty-orders p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 600px) {
-    .profile-page {
-        margin: 40px 15px;
-        padding: 25px;
-    }
-    .profile-page h1 {
-        font-size: 22px;
-    }
-}
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-/* ===== ACCESSIBILITY ===== */
-.profile-form input:focus,
-.profile-form textarea:focus,
-.btn-primary:focus {
-    outline: 2px solid #4B5945;
-    outline-offset: 2px;
-}
+  .avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+  }
 
-/* ===== DARK MODE SUPPORT ===== */
-@media (prefers-color-scheme: dark) {
-    .profile-page {
-        background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
-        color: #e0e0e0;
-    }
-    .profile-form label {
-        color: #e0e0e0;
-    }
-    .profile-form input,
-    .profile-form textarea {
-        background-color: #333;
-        border-color: #555;
-        color: #e0e0e0;
-    }
-    .profile-form input:focus,
-    .profile-form textarea:focus {
-        background-color: #444;
-        border-color: #4B5945;
-    }
+  .order-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .order-status {
+    text-align: left;
+  }
+
+  .order-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .order-total {
+    align-self: flex-end;
+  }
 }

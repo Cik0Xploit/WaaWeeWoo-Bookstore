@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result && $result->num_rows === 1) {
         $user = $result->fetch_assoc();
 
-        // Verify password using SHA256 hash (since DB uses SHA256)
+        // Verify password using SHA256 hash (since DB uses md5)
         if (hash('md5', $_POST['password']) === $user['password']) {
             // Save session data
             $_SESSION['user_id'] = $user['id'];
