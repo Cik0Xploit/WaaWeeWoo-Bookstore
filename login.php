@@ -18,15 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
 
-            if (password_verify($password, $user['password'])) {
+            if (md5($password) === $user['password']) {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['full_name'] = $user['full_name'];
                 $_SESSION['role'] = $user['role'];
 
                 if ($user['role'] === 'admin') {
-                    header("Location: admin_dashboard.php");
+                    header("Location: admin/dashboard.php");
                 } else {
-                    header("Location: index.php");
+                    header("Location: home.php");
                 }
                 exit;
             } else {

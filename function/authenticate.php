@@ -12,8 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result && $result->num_rows === 1) {
         $user = $result->fetch_assoc();
 
-        // Verify password using SHA256 hash (since DB uses md5)
-        if (hash('md5', $_POST['password']) === $user['password']) {
+        // Verify password using MD5 hash
+        if (md5($_POST['password']) === $user['password']) {
             // Save session data
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['full_name'] = $user['full_name'];
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($user['role'] === 'admin') {
             header("Location: ../admin/dashboard.php");
         } else {
-            header("Location: ../index.php");
+            header("Location: ../home.php");
         }
         exit;
     } else {

@@ -37,7 +37,7 @@
     <div class="team">
       <div class="member">
         <div class="member-image">
-          <img src="images/team-images/Formal-irfanshah1.jpg" alt="Muhammad Irfan bin Mohd Shahrizan">
+          <img src="images/team-images/Ciko.png" alt="Muhammad Irfan bin Mohd Shahrizan">
           <div class="member-role">Project Lead</div>
         </div>
         <div class="member-content">
@@ -58,12 +58,12 @@
 
       <div class="member">
         <div class="member-image">
-          <img src="images/user.png" alt="Adeeb">
+          <img src="images/team-images/Adeeb.png" alt="Adeeb">
           <div class="member-role">Admin</div>
         </div>
         <div class="member-content">
           <div class="member-info">
-            <h3>Adeeb</h3>
+            <h3>Adeeb Uzair Chu Bin Uzair Bin Yusri Hasnan</h3>
             <p class="position">Admin - Book & Category Manager</p>
             <p><strong>Responsibilities:</strong> Managing books and categories, admin panel development</p>
             <p><strong>Student ID:</strong> CBS24070259</p>
@@ -79,12 +79,12 @@
 
       <div class="member">
         <div class="member-image">
-          <img src="images/user.png" alt="Faheem">
+          <img src="images/team-images/Faheem.png" alt="Faheem">
           <div class="member-role">Admin</div>
         </div>
         <div class="member-content">
           <div class="member-info">
-            <h3>Faheem</h3>
+            <h3>Muhammad Faheem Nasrullah Bin Mohd Fizal</h3>
             <p class="position">Admin - User & Order Oversight</p>
             <p><strong>Responsibilities:</strong> User management, order processing, admin oversight</p>
             <p><strong>Student ID:</strong> CBS24070260</p>
@@ -100,12 +100,12 @@
 
       <div class="member">
         <div class="member-image">
-          <img src="images/user.png" alt="Amar">
+          <img src="images/team-images/Amar.png" alt="Amar">
           <div class="member-role">Member</div>
         </div>
         <div class="member-content">
           <div class="member-info">
-            <h3>Amar</h3>
+            <h3>Amar Ar-Razin Bin Hamidon</h3>
             <p class="position">Member - Shopping Experience</p>
             <p><strong>Responsibilities:</strong> Shopping cart, product browsing, user experience</p>
             <p><strong>Student ID:</strong> CBS24070261</p>
@@ -121,12 +121,12 @@
 
       <div class="member">
         <div class="member-image">
-          <img src="images/user.png" alt="Jazlan">
+          <img src="images/team-images/Jazlan.png" alt="Jazlan">
           <div class="member-role">Member</div>
         </div>
         <div class="member-content">
           <div class="member-info">
-            <h3>Jazlan</h3>
+            <h3>Muhammad Jazlan Bin Mohd Jubri</h3>
             <p class="position">Member - Checkout & Profile Mgmt</p>
             <p><strong>Responsibilities:</strong> Checkout process, user profiles, payment integration</p>
             <p><strong>Student ID:</strong> CBS24070262</p>

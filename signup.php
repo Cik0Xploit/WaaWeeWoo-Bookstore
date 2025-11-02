@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($result->num_rows > 0) {
             $error = "⚠️ Email already registered.";
         } else {
-            // Hash password and insert new user
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            // Hash password with MD5
+            $hashed_password = md5($password);
             $insert_sql = "
                 INSERT INTO users (full_name, email, password, role, phone, address)
                 VALUES (?, ?, ?, 'member', ?, ?)

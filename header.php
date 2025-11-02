@@ -33,17 +33,8 @@ $loggedIn = isset($_SESSION['user_id']);
         <!-- Navigation -->
         <nav class="nav-links" id="navMenu">
             <a href="index.php">Home</a>
-
-            <!-- Books Dropdown -->
-            <div class="dropdown">
-                <button type="button" class="dropdown-btn">Books ▾</button>
-                <div class="dropdown-menu">
-                    <a href="books.php">All Books</a>
-                    <a href="categories.php">Categories</a>
-                    <a href="bestsellers.php">Bestsellers</a>
-                </div>
-            </div>
-
+            <a href="books.php">All Books</a>
+            <a href="bestsellers.php">Bestsellers</a>
             <a href="contact.php">Team Members</a>
             <a href="aboutUs.php">About Us</a>
 

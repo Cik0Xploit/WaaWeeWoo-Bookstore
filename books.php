@@ -138,7 +138,7 @@ if (!$catResult) {
                             <p class="category"><?= htmlspecialchars($book['category_name']) ?></p>
                             <p class="price">RM<?= number_format($book['price'],2) ?></p>
                             <?php if ($book['stock']>0): ?>
-                                <a href="cart_add.php?id=<?= $book['id'] ?>" class="btn">🛒 Add to Cart</a>
+                                <a href="cart_add.php?book_id=<?= $book['id'] ?>" class="btn" onclick="addToCart(<?= $book['id'] ?>, '<?= htmlspecialchars(addslashes($book['title'])) ?>'); return false;">🛒 Add to Cart</a>
                             <?php else: ?>
                                 <span class="out-of-stock">Out of Stock</span>
                             <?php endif; ?>
@@ -166,3 +166,40 @@ if (!$catResult) {
 </section>
 
 <?php include_once 'footer.php'; ?>
+
+<script>
+function addToCart(bookId, bookTitle) {
+    // Check if user is logged in
+    <?php if (!isset($_SESSION['user_id'])): ?>
+        alert('Please login first to add items to cart.');
+        window.location.href = 'login.php';
+        return;
+    <?php endif; ?>
+
+    // Create AJAX request
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'cart_add.php?book_id=' + bookId, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                var response = xhr.responseText;
+                if (response.startsWith('Success:')) {
+                    // Success - show alert
+                    alert('"' + bookTitle + '" has been added to your cart!');
+                    // Optional: Update cart count in header if you have one
+                    // updateCartCount();
+                } else if (response.startsWith('Error:')) {
+                    // Error - show specific error message
+                    alert(response.replace('Error: ', ''));
+                } else {
+                    alert('Error adding item to cart. Please try again.');
+                }
+            } else {
+                // HTTP error
+                alert('Error adding item to cart. Please try again.');
+            }
+        }
+    };
+    xhr.send();
+}
+</script>

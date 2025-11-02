@@ -105,10 +105,6 @@ body {
 .tab-content.active {
   display: block;
 }
-.tabs-trigger.active {
-  background-color: #333;
-  color: #fff;
-}
 
 /* ===== Grid Form Layout ===== */
 .grid {

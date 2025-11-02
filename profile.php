@@ -139,14 +139,14 @@ $user = $result->fetch_assoc();
                 <div class="card-content">
                     <?php
                     $orders_query = $conn->prepare("
-                        SELECT o.id, o.order_date, o.total_amount, o.status,
+                        SELECT o.id, o.created_at as order_date, o.total, o.status,
                                GROUP_CONCAT(b.title SEPARATOR ', ') AS books
                         FROM orders o
                         LEFT JOIN order_items oi ON o.id = oi.order_id
                         LEFT JOIN books b ON oi.book_id = b.id
                         WHERE o.user_id = ?
                         GROUP BY o.id
-                        ORDER BY o.order_date DESC
+                        ORDER BY o.created_at DESC
                     ");
                     $orders_query->bind_param("i", $user_id);
                     $orders_query->execute();
@@ -167,7 +167,7 @@ $user = $result->fetch_assoc();
                                     </div>
                                     <div class="order-details">
                                         <p><?php echo htmlspecialchars($order['books']); ?></p>
-                                        <p><strong>Total:</strong> RM <?php echo number_format($order['total_amount'], 2); ?></p>
+                                        <p><strong>Total:</strong> RM <?php echo number_format($order['total'], 2); ?></p>
                                     </div>
                                 </div>
                             <?php endwhile; ?>

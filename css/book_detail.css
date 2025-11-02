@@ -181,3 +181,208 @@ body {
   font-style: italic;
   margin-bottom: 0.5rem;
 }
+
+/* ===== REVIEWS SECTION ===== */
+.reviews-section {
+  margin-top: 4rem;
+  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow:
+    0 15px 35px rgba(108, 99, 255, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(108, 99, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.reviews-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #6c63ff, #5b50ff, #7b74ff);
+  border-radius: 20px 20px 0 0;
+}
+
+.reviews-section h3 {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: #222;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+}
+
+.reviews-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #6c63ff, #5b50ff);
+  border-radius: 2px;
+}
+
+/* Rating Summary */
+.rating-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(108, 99, 255, 0.08);
+  border: 1px solid rgba(108, 99, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.avg-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.rating-number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #5b50ff;
+  text-shadow: 0 2px 4px rgba(91, 80, 255, 0.2);
+}
+
+.stars {
+  display: flex;
+  gap: 3px;
+}
+
+.star {
+  font-size: 1.8rem;
+  color: #e0e0e0;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.star.filled {
+  color: #ffc107;
+  filter: drop-shadow(0 2px 4px rgba(255, 193, 7, 0.3));
+}
+
+.review-count {
+  color: #666;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+/* Reviews List */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.review-item {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(108, 99, 255, 0.05);
+  border: 1px solid rgba(108, 99, 255, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.review-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #6c63ff, #5b50ff);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.review-item:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.12),
+    0 5px 15px rgba(108, 99, 255, 0.1);
+}
+
+.review-item:hover::before {
+  opacity: 1;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(108, 99, 255, 0.1);
+}
+
+.reviewer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.reviewer-info strong {
+  font-size: 1.2rem;
+  color: #222;
+  font-weight: 600;
+}
+
+.review-rating {
+  display: flex;
+  gap: 2px;
+}
+
+.review-rating .star {
+  font-size: 1.3rem;
+}
+
+.review-date {
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: rgba(108, 99, 255, 0.08);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(108, 99, 255, 0.1);
+}
+
+.review-comment {
+  color: #444;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-top: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(108, 99, 255, 0.02);
+  border-radius: 8px;
+  border-left: 4px solid #6c63ff;
+}
+
+.no-reviews {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  padding: 4rem 2rem;
+  background: rgba(108, 99, 255, 0.02);
+  border-radius: 16px;
+  border: 2px dashed rgba(108, 99, 255, 0.2);
+  font-size: 1.1rem;
+  margin: 2rem 0;
+}
