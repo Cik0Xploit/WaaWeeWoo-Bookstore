@@ -39,14 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Add New Book - WaaWeeWoo Bookstore</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/sidebar.css">
-    <link rel="stylesheet" href="../css/category_add.css">
+    <link rel="stylesheet" href="dash.css"> 
+    <link rel="stylesheet" href="navbar.css"> 
+    <link rel="stylesheet" href="add_book.css">
 </head>
 <body>
 
 <div class="admin-container">
-    <?php include "sidebar.php"; ?>
+    <?php include "header.php"; ?>
 
     <main class="main-content">
         <h1>Register New Category 📚</h1>

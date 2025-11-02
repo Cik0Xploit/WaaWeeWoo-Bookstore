@@ -1,0 +1,62 @@
+/* --- Admin Navigation Bar Styles --- */
+
+.admin-navbar {
+    /* Container spanning the width below the header */
+    width: 100%;
+    /* Subtle separation from the main content */
+    border-bottom: 1px solid #eee; 
+    padding: 0 30px; /* Matches header padding for alignment */
+    background-color: #fff;
+}
+
+.admin-navbar .nav-links {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Key to making it horizontal */
+    align-items: center;
+}
+
+.admin-navbar .nav-links li {
+    /* Keeps list items inline and provides structure */
+    margin-right: 2px; 
+}
+
+.admin-navbar .nav-links a {
+    display: flex;
+    align-items: center;
+    padding: 10px 18px; /* Vertical and horizontal padding */
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px; /* Subtle rounding for the background */
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.admin-navbar .nav-links a i {
+    /* Icon styling */
+    margin-right: 8px;
+    font-size: 16px;
+    color: #888;
+}
+
+/* Hover and Active (Selected) States */
+
+.admin-navbar .nav-links a:hover {
+    color: #5554B8; /* Text color change on hover */
+    background-color: #f7f7f7; /* Light background on hover */
+}
+
+/* Active State Styles (for the current page) */
+.admin-navbar .nav-links a.active {
+    color: #5554B8; /* Blue-purple text color */
+    background-color: #ebeafc; /* Very light blue-purple background */
+    /* Add a subtle underline/border for the active tab look */
+    /* This styling is slightly different from the image but very common: */
+    /* border-bottom: 3px solid #5554B8; */ 
+}
+
+.admin-navbar .nav-links a.active i {
+    color: #5554B8; /* Active icon color */
+}

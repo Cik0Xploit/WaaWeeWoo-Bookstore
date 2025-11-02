@@ -8,9 +8,17 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
+
+// Note: The session/security/variable initialization should be in header.php, 
+// but since the original code had it here, we will include the necessary files first.
+
+// Include header.php (which should contain session_start() and security checks)
+include "header.php"; 
+
+// Since header.php already handles the security, we can proceed with DB logic.
 include ("../function/connectdb.php");
 
-// --- START: NEW PAGINATION LOGIC ---
+// --- START: PAGINATION LOGIC ---
 $limit = 10; // Number of records to show per page
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
 $start = ($page - 1) * $limit; // Starting record for the query
@@ -34,27 +42,10 @@ $query = "SELECT b.*, c.name AS category_name
           ORDER BY b.id ASC 
           LIMIT $start, $limit"; // Apply LIMIT and OFFSET
 $result = mysqli_query($conn, $query);
-
-$fullname = $_SESSION['fullname'] ?? 'Admin';
-// --- END: NEW PAGINATION LOGIC ---
+// --- END: PAGINATION LOGIC ---
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Manage Books - WaaWeeWoo Bookstore</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/sidebar.css">
-    <link rel="stylesheet" href="../css/inventory.css">
-</head>
-<body>
-
-<div class="admin-container">
-    <?php include "sidebar.php"; ?>
-
-    <main class="main-content">
-        <h1 style="text-align: left;">Book Inventory</h1>
+<main class="main-content"> <h1 style="text-align: left;">Book Inventory</h1>
         <p style="text-align: left; margin-bottom: 20px;">This is where you manage the entire collection of books, including adding, updating, and deleting entries.</p>
 
         <div style="width: 100%; text-align: right; margin-bottom: 15px;">
@@ -66,16 +57,16 @@ $fullname = $_SESSION['fullname'] ?? 'Admin';
             echo "<table class='inventory-table'>";
             echo "<thead>";
             echo "<tr>
-                    <th>Book ID</th>
-                    <th>ISBN</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Stock</th>
-                    <th>Image</th>
-                    <th colspan='2' class='action-header'>Actions</th>
-                </tr>";
+                        <th>Book ID</th>
+                        <th>ISBN</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Image</th>
+                        <th colspan='2' class='action-header'>Actions</th>
+                    </tr>";
             echo "</thead>";
             echo "<tbody>";
             
@@ -116,8 +107,7 @@ $fullname = $_SESSION['fullname'] ?? 'Admin';
                 <?php endif; ?>
             </div>
         <?php endif; ?>
-        </main>
-</div>
-
+    </main>
+    
 </body>
 </html>

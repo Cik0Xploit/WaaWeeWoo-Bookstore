@@ -56,81 +56,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Add New Book - WaaWeeWoo Bookstore</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/sidebar.css">
-    <link rel="stylesheet" href="../css/book_add.css">
+    <link rel="stylesheet" href="dash.css"> 
+    <link rel="stylesheet" href="navbar.css"> 
+    <link rel="stylesheet" href="add_book.css"> 
+
     
 </head>
 <body>
-
 <div class="admin-container">
-    <?php include "sidebar.php"; ?>
+    <?php include "header.php"; ?>
 
     <main class="main-content">
-        <h1>Register New Book 📚</h1>
-        <p>Please enter the details for the new book.</p>
-        
-        <?php if (!empty($error)): ?>
-            <div class="alert-error"><?= $error ?></div>
-        <?php endif; ?>
+        <div class="form-card large-form"> 
+            <div class="card-header">
+                <h2>Add New Book</h2>
+                <a href="manage_books.php" class="close-icon">&times;</a>
+            </div>
+            
+            <?php if (!empty($error)): ?>
+                <div class="alert-error"><?= $error ?></div>
+            <?php endif; ?>
 
-        <div class="form-card">
-            <form action="../admin/add_book.php" method="POST" enctype="multipart/form-data">
+            <form action="add_book.php" method="POST" enctype="multipart/form-data" class="book-form-grid">
                 
-                <div class="form-group">
-                    <label for="isbn">ISBN:</label>
-                    <input type="text" id="isbn" name="isbn" required>
+                <div class="form-group span-col-1">
+                    <label for="title">Book Title</label>
+                    <input type="text" id="title" name="title" placeholder="Enter book title" required>
                 </div>
-                
-                <div class="form-group">
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="author">Author:</label>
-                    <input type="text" id="author" name="author" required>
+                <div class="form-group span-col-1">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author" placeholder="Enter author name" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="category_id">Category:</label>
+                <div class="form-group span-col-1">
+                    <label for="isbn">ISBN</label>
+                    <input type="text" id="isbn" name="isbn" placeholder="Enter ISBN" required>
+                </div>
+                <div class="form-group span-col-1">
+                    <label for="category_id">Category</label>
                     <select id="category_id" name="category_id" required>
-                        <option value="">-- Select Category --</option>
+                        <option value="">Select category</option>
+                        <?php mysqli_data_seek($categories_result, 0); // Reset pointer for use ?>
                         <?php while ($cat = mysqli_fetch_assoc($categories_result)): ?>
-                            <option value="<?= htmlspecialchars($cat['id']) ?>">
-                                <?= htmlspecialchars($cat['name']) ?>
-                            </option>
+                            <option value="<?= htmlspecialchars($cat['id']) ?>"><?= htmlspecialchars($cat['name']) ?></option>
                         <?php endwhile; ?>
                     </select>
                 </div>
-                
-                <div class="form-group">
-                    <label for="publication">Publication Year:</label>
-                    <input type="number" id="publication" name="publication" min="1000" max="<?= date('Y') ?>" required>
+
+                <div class="form-group span-col-1">
+                    <label for="price">Price (RM)</label>
+                    <input type="number" id="price" name="price" step="0.01" min="0.01" value="0.00" required>
                 </div>
-                
-                <div class="form-group">
-                    <label for="stock">Quantity In Stock:</label>
-                    <input type="number" id="stock" name="stock" min="0" required>
+                <div class="form-group span-col-1">
+                    <label for="stock">Stock Quantity</label>
+                    <input type="number" id="stock" name="stock" min="0" value="0" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="desc">Description:</label>
-                    <input type="text" id="desc" name="description" required>
+                <div class="form-group span-col-2">
+                    <label for="desc">Description</label>
+                    <textarea id="desc" name="description" rows="5" placeholder="Enter book description" required></textarea>
                 </div>
                 
-                <div class="form-group">
-                    <label for="price">Price (RM):</label>
-                    <input type="number" id="price" name="price" step="0.01" min="0.01" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="cover_image">Cover Image:</label>
-                    <input type="file" id="cover_image" name="cover_image">
+                <div class="form-actions span-col-2">
+                    <a href="manage_books.php" class="btn-secondary">Cancel</a>
+                    <button type="submit" class="btn-primary">Add Book</button>
                 </div>
                 
-                <button type="submit" class="submit-btn">Add Book</button>
-                <a href="manage_book.php" style="margin-left: 15px; color: #555;">Cancel</a>
             </form>
         </div>
     </main>

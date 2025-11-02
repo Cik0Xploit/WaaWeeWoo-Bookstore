@@ -28,27 +28,21 @@ if ($user_result) {
     $total_users = $user_data['total'];
     mysqli_free_result($user_result);
 }
-
+include "header.php";
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard - WaaWeeWoo Bookstore</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/sidebar.css">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="dash.css"> 
+    <link rel="stylesheet" href="navbar.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-
-<div class="admin-container">
-    <?php include "sidebar.php"; ?>
-
-    <main class="main-content">
-        <h1>Welcome, <?= htmlspecialchars($fullname) ?> 👋</h1>
-        <p>This is your <b>Admin Dashboard</b>. From here, you can manage books, users, and orders.</p>
-
-        <div class="dashboard-grid">
+    <div class="dashboard-grid">
             <div class="card">
                 <h3>📚 Total Books</h3>
                 <p><?= htmlspecialchars($total_books)?></p>
@@ -66,8 +60,6 @@ if ($user_result) {
                 <p>RM 1,230</p>
             </div>
         </div>
-    </main>
-</div>
-
+    
 </body>
 </html>

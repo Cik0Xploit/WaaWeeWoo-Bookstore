@@ -1,0 +1,122 @@
+/* --- 1. Form Card Container Styling (Simulating the Modal Look) --- */
+.large-form {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin: 30px auto; /* Center the card horizontally */
+    max-width: 800px; /* Limit the width for aesthetics */
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.card-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.close-icon {
+    text-decoration: none;
+    color: #999;
+    font-size: 28px;
+    line-height: 1;
+}
+
+/* --- 2. Form Grid Layout --- */
+.book-form-grid {
+    padding: 30px;
+    display: grid;
+    /* Two equal columns for the main fields */
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px 30px; /* Vertical and horizontal gap */
+}
+
+/* Fields that span both columns (Description, Footer) */
+.span-col-2 {
+    grid-column: span 2;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* --- 3. Modern Input Styles --- */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    background-color: #fcfcfc;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #5554B8; /* Purple focus color */
+    box-shadow: 0 0 0 3px rgba(85, 84, 184, 0.1);
+    background-color: white;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* --- 4. Footer Actions (Buttons) --- */
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* Pushes buttons to the right */
+    gap: 10px;
+    padding-top: 10px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s, opacity 0.2s;
+    text-decoration: none; 
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #5554B8; /* Purple primary color */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #44439c;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #777;
+    border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+    background-color: #f5f5f5;
+}

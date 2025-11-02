@@ -26,13 +26,13 @@ $result = $conn->query($query);
 <head>
     <meta charset="UTF-8">
     <title>User Logs - WaaWeeWoo Admin</title>
-    <link rel="stylesheet" href="../css/user_log.css">
-    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="dash.css"> 
+    <link rel="stylesheet" href="navbar.css"> 
 </head>
 <body>
 
 <div class="admin-container">
-    <?php include "sidebar.php"; ?>
+    <?php include "header.php"; ?>
 
     <main class="main-content">
         <h1>🕓 User Login Logs</h1>
