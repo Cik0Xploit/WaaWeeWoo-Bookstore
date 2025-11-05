@@ -13,7 +13,7 @@ $fullname = $_SESSION['fullname'] ?? 'Admin';
 
 // Fetch all user logins
 $query = "
-    SELECT l.id, u.fullname, u.email, l.login_time 
+    SELECT l.id, u.full_name, u.email, l.login_time
     FROM user_logins l
     JOIN users u ON l.user_id = u.id
     ORDER BY l.login_time DESC
@@ -26,8 +26,8 @@ $result = $conn->query($query);
 <head>
     <meta charset="UTF-8">
     <title>User Logs - WaaWeeWoo Admin</title>
-    <link rel="stylesheet" href="dash.css"> 
-    <link rel="stylesheet" href="navbar.css"> 
+    <link rel="stylesheet" href="css/dash.css">
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 <body>
 
@@ -35,8 +35,9 @@ $result = $conn->query($query);
     <?php include "header.php"; ?>
 
     <main class="main-content">
-        <h1>🕓 User Login Logs</h1>
-        <p>Below is a record of all user login activity.</p>
+        <div class="dashboard-container">
+            <h1>🕓 User Login Logs</h1>
+            <p>Below is a record of all user login activity.</p>
 
         <table class="log-table">
             <thead>
@@ -52,7 +53,7 @@ $result = $conn->query($query);
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <tr>
                             <td><?= htmlspecialchars($row['id']) ?></td>
-                            <td><?= htmlspecialchars($row['fullname']) ?></td>
+                            <td><?= htmlspecialchars($row['full_name']) ?></td>
                             <td><?= htmlspecialchars($row['email']) ?></td>
                             <td><?= htmlspecialchars($row['login_time']) ?></td>
                         </tr>
@@ -64,6 +65,7 @@ $result = $conn->query($query);
                 <?php endif; ?>
             </tbody>
         </table>
+        </div>
     </main>
 </div>
 

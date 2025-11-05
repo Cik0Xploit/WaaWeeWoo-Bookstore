@@ -11,6 +11,38 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $message = "";
 
+// Handle review submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
+    $book_id = intval($_POST['book_id']);
+    $rating = intval($_POST['rating']);
+    $comment = trim($_POST['comment']);
+
+    if ($rating < 1 || $rating > 5) {
+        $message = 'Invalid rating.';
+    } elseif (empty($comment)) {
+        $message = 'Comment is required.';
+    } else {
+        // Check if review already exists
+        $check_review = $conn->prepare("SELECT id FROM reviews WHERE user_id = ? AND book_id = ?");
+        $check_review->bind_param("ii", $user_id, $book_id);
+        $check_review->execute();
+        $review_result = $check_review->get_result();
+
+        if ($review_result->num_rows > 0) {
+            $message = 'You have already reviewed this book.';
+        } else {
+            // Insert review
+            $insert_review = $conn->prepare("INSERT INTO reviews (user_id, book_id, rating, comment, created_at) VALUES (?, ?, ?, ?, NOW())");
+            $insert_review->bind_param("iiis", $user_id, $book_id, $rating, $comment);
+            if ($insert_review->execute()) {
+                $message = 'Review submitted successfully!';
+            } else {
+                $message = 'Failed to submit review. Please try again.';
+            }
+        }
+    }
+}
+
 // Handle profile update
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     $full_name = trim($_POST['full_name']);
@@ -59,6 +91,132 @@ $user = $result->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile | WaaWeeWoo Bookstore</title>
     <link rel="stylesheet" href="css/profile.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .tracking-timeline {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .tracking-timeline h5 {
+            margin-bottom: 1rem;
+            color: #495057;
+            font-weight: 600;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #dee2e6;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+        }
+
+        .timeline-item.completed .timeline-marker {
+            background-color: #198754;
+        }
+
+        .timeline-item.pending .timeline-marker {
+            background-color: #6c757d;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -2.5rem;
+            top: 0.25rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+        }
+
+        .timeline-content h6 {
+            margin: 0 0 0.25rem 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .timeline-content small {
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+
+        .order-item {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .order-info h4 {
+            margin: 0 0 0.25rem 0;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .order-date {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            padding: 0.375rem 0.75rem;
+            border-radius: 20px;
+        }
+
+        .mt-3 {
+            margin-top: 1rem !important;
+        }
+
+        .fs-6 {
+            font-size: 0.875rem !important;
+        }
+
+        .text-success {
+            color: #198754 !important;
+        }
+
+        .text-muted {
+            color: #6c757d !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -134,12 +292,12 @@ $user = $result->fetch_assoc();
         <div class="tab-content" id="orders">
             <div class="card">
                 <div class="card-header">
-                    <h3>Order History</h3>
+                    <h3>Order History & Tracking</h3>
                 </div>
                 <div class="card-content">
                     <?php
                     $orders_query = $conn->prepare("
-                        SELECT o.id, o.created_at as order_date, o.total, o.status,
+                        SELECT o.id, o.created_at as order_date, o.total, o.status, o.shipping_address,
                                GROUP_CONCAT(b.title SEPARATOR ', ') AS books
                         FROM orders o
                         LEFT JOIN order_items oi ON o.id = oi.order_id
@@ -154,27 +312,115 @@ $user = $result->fetch_assoc();
 
                     if ($orders_result->num_rows > 0): ?>
                         <div class="orders-list">
-                            <?php while ($order = $orders_result->fetch_assoc()): ?>
+                            <?php while ($order = $orders_result->fetch_assoc()):
+                                $status_badge = match(strtolower($order['status'])) {
+                                    'pending' => 'badge bg-warning text-dark',
+                                    'paid' => 'badge bg-info',
+                                    'shipped' => 'badge bg-primary',
+                                    'delivered' => 'badge bg-success',
+                                    'cancelled' => 'badge bg-danger',
+                                    default => 'badge bg-secondary'
+                                };
+                            ?>
                                 <div class="order-item">
                                     <div class="order-header">
                                         <div class="order-info">
                                             <h4>Order #<?php echo $order['id']; ?></h4>
-                                            <p class="order-date"><?php echo date('M d, Y', strtotime($order['order_date'])); ?></p>
+                                            <p class="order-date"><?php echo date('M d, Y \a\t H:i', strtotime($order['order_date'])); ?></p>
                                         </div>
-                                        <span class="status <?php echo strtolower($order['status']); ?>">
+                                        <span class="<?php echo $status_badge; ?> fs-6">
                                             <?php echo ucfirst($order['status']); ?>
                                         </span>
                                     </div>
                                     <div class="order-details">
-                                        <p><?php echo htmlspecialchars($order['books']); ?></p>
+                                        <p><strong>Books:</strong> <?php echo htmlspecialchars($order['books']); ?></p>
                                         <p><strong>Total:</strong> RM <?php echo number_format($order['total'], 2); ?></p>
+                                        <p><strong>Shipping Address:</strong> <?php echo htmlspecialchars($order['shipping_address']); ?></p>
+
+                                        <!-- Order Tracking Timeline -->
+                                        <div class="tracking-timeline mt-3">
+                                            <h5>Order Tracking</h5>
+                                            <div class="timeline">
+                                                <?php
+                                                $tracking_steps = [
+                                                    'pending' => ['step' => 1, 'label' => 'Order Placed', 'date' => $order['order_date'], 'completed' => true],
+                                                    'paid' => ['step' => 2, 'label' => 'Payment Confirmed', 'date' => null, 'completed' => in_array(strtolower($order['status']), ['paid', 'shipped', 'delivered'])],
+                                                    'shipped' => ['step' => 3, 'label' => 'Shipped', 'date' => null, 'completed' => in_array(strtolower($order['status']), ['shipped', 'delivered'])],
+                                                    'delivered' => ['step' => 4, 'label' => 'Delivered', 'date' => null, 'completed' => strtolower($order['status']) === 'delivered']
+                                                ];
+
+                                                foreach ($tracking_steps as $step_key => $step):
+                                                ?>
+                                                    <div class="timeline-item <?php echo $step['completed'] ? 'completed' : 'pending'; ?>">
+                                                        <div class="timeline-marker">
+                                                            <?php if ($step['completed']): ?>
+                                                                <i class="fas fa-check-circle text-success"></i>
+                                                            <?php else: ?>
+                                                                <i class="far fa-circle text-muted"></i>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                        <div class="timeline-content">
+                                                            <h6><?php echo $step['label']; ?></h6>
+                                                            <?php if ($step['completed'] && $step['date']): ?>
+                                                                <small class="text-muted"><?php echo date('M d, Y H:i', strtotime($step['date'])); ?></small>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div>
+
+                                        <?php if (strtolower($order['status']) === 'delivered'): ?>
+                                            <div class="review-section mt-3">
+                                                <h5>Review Books</h5>
+                                                <?php
+                                                // Fetch individual books for this order
+                                                $books_query = $conn->prepare("
+                                                    SELECT b.id, b.title
+                                                    FROM order_items oi
+                                                    JOIN books b ON oi.book_id = b.id
+                                                    WHERE oi.order_id = ?
+                                                ");
+                                                $books_query->bind_param("i", $order['id']);
+                                                $books_query->execute();
+                                                $books_result = $books_query->get_result();
+                                                while ($book = $books_result->fetch_assoc()):
+                                                    // Check if user already reviewed this book
+                                                    $review_check = $conn->prepare("SELECT id FROM reviews WHERE user_id = ? AND book_id = ?");
+                                                    $review_check->bind_param("ii", $user_id, $book['id']);
+                                                    $review_check->execute();
+                                                    $has_reviewed = $review_check->get_result()->num_rows > 0;
+                                                ?>
+                                                    <?php if (!$has_reviewed): ?>
+                                                        <div class="review-form" style="margin-top: 10px;">
+                                                            <form method="POST" style="display: inline;">
+                                                                <input type="hidden" name="book_id" value="<?php echo $book['id']; ?>">
+                                                                <label><?php echo htmlspecialchars($book['title']); ?>:</label>
+                                                                <select name="rating" required style="margin: 0 5px;">
+                                                                    <option value="">Rate</option>
+                                                                    <option value="5">5 ★</option>
+                                                                    <option value="4">4 ★</option>
+                                                                    <option value="3">3 ★</option>
+                                                                    <option value="2">2 ★</option>
+                                                                    <option value="1">1 ★</option>
+                                                                </select>
+                                                                <input type="text" name="comment" placeholder="Write a review..." required style="width: 200px; margin: 0 5px;">
+                                                                <button type="submit" name="submit_review" class="btn btn-small">Submit Review</button>
+                                                            </form>
+                                                        </div>
+                                                    <?php else: ?>
+                                                        <p style="color: green; font-size: 0.9em;">You have already reviewed "<?php echo htmlspecialchars($book['title']); ?>"</p>
+                                                    <?php endif; ?>
+                                                <?php endwhile; ?>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             <?php endwhile; ?>
                         </div>
                     <?php else: ?>
                         <div class="empty-orders">
-                            <p>You haven’t placed any orders yet.</p>
+                            <p>You haven't placed any orders yet.</p>
                             <a href="books.php" class="btn">Start Shopping</a>
                         </div>
                     <?php endif; ?>

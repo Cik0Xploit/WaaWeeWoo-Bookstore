@@ -45,30 +45,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-<div class="admin-container">
-    <?php include "header.php"; ?>
+<div class="dashboard-container">
+    <h1>Add New Category</h1>
+    <p>Use the form below to add a new category to the system.</p>
 
-    <main class="main-content">
-        <h1>Register New Category 📚</h1>
-        <p>Please enter the new Category.</p>
-        
-        <?php if (!empty($error)): ?>
-            <div class="alert-error"><?= $error ?></div>
-        <?php endif; ?>
+    <div class="content-card">
+        <div class="form-card large-form">
+            <div class="card-header">
+                <h2>Add New Category</h2>
+                <a href="manage_category.php" class="close-icon">&times;</a>
+            </div>
 
-        <div class="form-card">
-            <form action="../admin/add_category.php" method="POST" enctype="multipart/form-data">
-                
+            <?php if (!empty($error)): ?>
+                <div class="alert-error"><?= $error ?></div>
+            <?php endif; ?>
+
+            <form action="add_category.php" method="POST">
                 <div class="form-group">
-                    <label for="category">Category:</label>
-                    <input type="text" id="category" name="name" required>
+                    <label for="name">Category Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter category name" required>
                 </div>
 
-                <button type="submit" class="submit-btn">Add Category</button>
-                <a href="manage_category.php" style="margin-left: 15px; color: #555;">Cancel</a>
+                <div class="form-actions">
+                    <a href="manage_category.php" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Add Category</button>
+                </div>
             </form>
         </div>
-    </main>
+    </div>
 </div>
 
 </body>

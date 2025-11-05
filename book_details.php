@@ -118,6 +118,33 @@ $cover = (!empty($book['cover_image']) && file_exists("images/" . $book['cover_i
         </div>
     </div>
 
+    <div class="recommended">
+        <h3>You May Also Like</h3>
+        <div class="recommended-grid">
+            <?php if (!empty($related_books)): ?>
+                <?php foreach ($related_books as $related): ?>
+                    <?php
+                    $related_cover = (!empty($related['cover_image']) && file_exists("images/" . $related['cover_image']))
+                        ? "images/" . $related['cover_image']
+                        : "images/bookspic.jpg";
+                    ?>
+                    <div class="book-card">
+                        <a href="book_details.php?id=<?= $related['id'] ?>">
+                            <img src="<?= htmlspecialchars($related_cover) ?>" alt="<?= htmlspecialchars($related['title']) ?>">
+                            <div class="card-body">
+                                <h4><?= htmlspecialchars($related['title']) ?></h4>
+                                <p class="author"><?= htmlspecialchars($related['author'] ?: 'Author Name') ?></p>
+                                <p class="price">RM <?= number_format($related['price'], 2) ?></p>
+                            </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No related books found.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+
     <!-- Reviews Section -->
     <div class="reviews-section">
         <h3>Customer Reviews</h3>
@@ -160,33 +187,6 @@ $cover = (!empty($book['cover_image']) && file_exists("images/" . $book['cover_i
                 <?php endforeach; ?>
             <?php else: ?>
                 <p class="no-reviews">No reviews yet. Be the first to review this book!</p>
-            <?php endif; ?>
-        </div>
-    </div>
-
-    <div class="recommended">
-        <h3>You May Also Like</h3>
-        <div class="recommended-grid">
-            <?php if (!empty($related_books)): ?>
-                <?php foreach ($related_books as $related): ?>
-                    <?php
-                    $related_cover = (!empty($related['cover_image']) && file_exists("images/" . $related['cover_image']))
-                        ? "images/" . $related['cover_image']
-                        : "images/bookspic.jpg";
-                    ?>
-                    <div class="book-card">
-                        <a href="book_details.php?id=<?= $related['id'] ?>">
-                            <img src="<?= htmlspecialchars($related_cover) ?>" alt="<?= htmlspecialchars($related['title']) ?>">
-                            <div class="card-body">
-                                <h4><?= htmlspecialchars($related['title']) ?></h4>
-                                <p class="author"><?= htmlspecialchars($related['author'] ?: 'Author Name') ?></p>
-                                <p class="price">RM <?= number_format($related['price'], 2) ?></p>
-                            </div>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>No related books found.</p>
             <?php endif; ?>
         </div>
     </div>

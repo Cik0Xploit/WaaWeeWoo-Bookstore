@@ -23,14 +23,6 @@ include 'header.php';
   <h2>Browse by Category</h2>
   <div class="category-grid">
     <?php
-    $descriptions = [
-        'Fiction' => 'Immerse yourself in imaginative stories, from classics to contemporary novels that spark creativity and adventure.',
-        'Self-help / Business' => 'Practical guides and strategies to improve personal growth, career, leadership, and business skills.',
-        'Biography / Science' => 'Explore real-life stories of remarkable people and scientific discoveries that shaped our world.',
-        'Programming / Technology' => 'Learn the latest in coding, software development, and emerging technologies for all skill levels.',
-        'Light Novel' => 'Enjoy fun, engaging Japanese-style stories with illustrations, perfect for casual reading.'
-    ];
-
     $query = "SELECT * FROM categories ORDER BY id ASC";
     $result = $conn->query($query);
 
@@ -42,12 +34,13 @@ include 'header.php';
                 case 'Biography / Science': $icon = '🔬'; break;
                 case 'Programming / Technology': $icon = '💻'; break;
                 case 'Light Novel': $icon = '📖'; break;
+                case 'Thriller' : $icon = '🕵️‍♂️'; break;
             }
 
             echo '<div class="category-card">';
             echo '<div class="category-icon">'.$icon.'</div>';
             echo '<h3>'.htmlspecialchars($row['name']).'</h3>';
-            echo '<p>'.($descriptions[$row['name']] ?? '').'</p>';
+            echo '<p>'.htmlspecialchars($row['description'] ?? 'No description available.').'</p>';
             echo '</div>';
         }
     } else {

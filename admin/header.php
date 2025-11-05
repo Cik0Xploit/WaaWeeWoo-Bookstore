@@ -23,8 +23,8 @@ $initials = strtoupper(
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="dash.css"> 
-    <link rel="stylesheet" href="navbar.css"> 
+    <link rel="stylesheet" href="css/dash.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>

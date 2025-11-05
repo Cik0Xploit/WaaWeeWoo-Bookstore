@@ -98,6 +98,10 @@ $order_id = $_GET['order_id'] ?? null;
     <meta charset="UTF-8">
     <title>Checkout - WaaWeeWoo Bookstore</title>
     <link rel="stylesheet" href="css/cart.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .checkout-form { max-width: 800px; margin: 0 auto; }
         .checkout-form h2 { color: #333; margin-bottom: 20px; }
@@ -114,6 +118,95 @@ $order_id = $_GET['order_id'] ?? null;
         .btn-checkout:hover { background: #7c3aed; }
         .success-message { text-align: center; padding: 50px 20px; }
         .success-message h2 { color: #22c55e; }
+
+        .tracking-timeline {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .tracking-timeline h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #dee2e6;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+        }
+
+        .timeline-item.completed .timeline-marker {
+            background-color: #198754;
+        }
+
+        .timeline-item.pending .timeline-marker {
+            background-color: #6c757d;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -2.5rem;
+            top: 0.25rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+        }
+
+        .timeline-content h6 {
+            margin: 0 0 0.25rem 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .timeline-content small {
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+
+        .tracking-info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+
+        .tracking-info h5 {
+            color: #495057;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .tracking-info p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -125,6 +218,59 @@ $order_id = $_GET['order_id'] ?? null;
             <h2>✅ Order Placed Successfully!</h2>
             <p>Thank you for your purchase. Your order #<?php echo $order_id; ?> has been placed and is being processed.</p>
             <p>You will receive an email confirmation shortly.</p>
+
+            <!-- Order Tracking Section -->
+            <div class="order-tracking-section" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef;">
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">📦 Order Tracking</h3>
+                <div class="tracking-timeline">
+                    <div class="timeline">
+                        <div class="timeline-item completed">
+                            <div class="timeline-marker">
+                                <i class="fas fa-check-circle text-success"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h6>Order Placed</h6>
+                                <small class="text-muted"><?php echo date('M d, Y H:i'); ?></small>
+                            </div>
+                        </div>
+                        <div class="timeline-item pending">
+                            <div class="timeline-marker">
+                                <i class="far fa-circle text-muted"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h6>Payment Confirmed</h6>
+                                <small class="text-muted">Waiting for payment processing</small>
+                            </div>
+                        </div>
+                        <div class="timeline-item pending">
+                            <div class="timeline-marker">
+                                <i class="far fa-circle text-muted"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h6>Shipped</h6>
+                                <small class="text-muted">Order will be shipped soon</small>
+                            </div>
+                        </div>
+                        <div class="timeline-item pending">
+                            <div class="timeline-marker">
+                                <i class="far fa-circle text-muted"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h6>Delivered</h6>
+                                <small class="text-muted">Estimated delivery: 3-5 business days</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tracking-info" style="margin-top: 20px; padding: 15px; background: white; border-radius: 6px;">
+                    <h5 style="color: #495057; margin-bottom: 10px;">Track Your Order</h5>
+                    <p style="margin: 0; color: #6c757d; font-size: 0.9rem;">
+                        You can track your order status anytime by visiting your <a href="profile.php" style="color: #007bff; text-decoration: none;">Profile</a> page under the "Order History" tab.
+                    </p>
+                </div>
+            </div>
+
             <a href="books.php" class="checkout-btn" style="display: inline-block; margin-top: 20px;">Continue Shopping</a>
         </div>
     <?php else: ?>
