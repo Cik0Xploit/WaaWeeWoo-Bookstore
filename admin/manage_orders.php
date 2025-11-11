@@ -164,10 +164,7 @@ $fullname = $_SESSION['fullname'] ?? 'Admin';
             <h1>Ongoing Orders</h1>
             <p>This is where you manage orders, including viewing and managing order details.</p>
 
-            <div style="width: 100%; text-align: right; margin-bottom: 15px;">
-                <a href='add_order.php' class='btn btn-primary'>➕ Add New Order</a>
-            </div>
-
+          
         <?php
         if (mysqli_num_rows($result) > 0) {
             echo "<div class='table-responsive'>";

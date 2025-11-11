@@ -1,0 +1,139 @@
+/* add_category_styles.css */
+
+/* --- Layout and Centering --- */
+
+/* Centers the main content area horizontally on the page */
+.dashboard-container {
+    padding: 20px;
+}
+
+/* Flex container to center the form card within the page content */
+.content-card {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    width: 100%;
+}
+
+/* --- Form Card Styling --- */
+
+/* Style for the actual form card (like a centered modal) */
+.form-card {
+    background-color: #fff; /* White background for the card */
+    border: 1px solid #e0e0e0; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 25px 30px; /* Internal padding */
+    margin-top: 30px; /* Space from the page title */
+    
+    /* Set a constrained width */
+    max-width: 500px; /* A good size for a simple form card */
+    width: 90%; 
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* --- Card Header/Title Styling --- */
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0; /* Light separator line */
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 1.5rem; /* Larger font for the title */
+    color: #333;
+}
+
+/* Style for the 'x' close icon */
+.close-icon {
+    font-size: 24px;
+    text-decoration: none;
+    color: #888;
+    transition: color 0.2s;
+}
+
+.close-icon:hover {
+    color: #333;
+}
+
+/* --- Form Elements Styling --- */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-card input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.form-card input[type="text"]:focus {
+    border-color: #007bff; /* Highlight on focus */
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* --- Button Styling --- */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* Push buttons to the right */
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none; /* For the 'Cancel' anchor tag */
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: #007bff; /* Blue for primary action */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Gray for secondary action */
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* --- Alert Styling --- */
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}

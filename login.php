@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = trim($_POST['password']);
 
     if (empty($email) || empty($password)) {
-        $error = "⚠️ Please enter both email and password.";
+        $error = "⚠ Please enter both email and password.";
     } else {
         $sql = "SELECT * FROM users WHERE email = ?";
         $stmt = $conn->prepare($sql);
@@ -22,6 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['full_name'] = $user['full_name'];
                 $_SESSION['role'] = $user['role'];
+
+                $log_stmt = $conn->prepare("INSERT INTO user_logins (user_id) VALUES (?)");
+                $log_stmt->bind_param("i", $user['id']);
+                $log_stmt->execute();
+                $log_stmt->close();
 
                 if ($user['role'] === 'admin') {
                     header("Location: admin/dashboard.php");

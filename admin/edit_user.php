@@ -144,7 +144,7 @@ if (isset($_GET['success'])) {
                     <div class="form-group">
                         <label for="role">Role:</label>
                         <select name="role" id="role" required>
-                            <option value="user" <?php echo ($user['role'] === 'user') ? 'selected' : ''; ?>>User</option>
+                            <option value="member" <?php echo ($user['role'] === 'member') ? 'selected' : ''; ?>>Member</option>
                             <option value="admin" <?php echo ($user['role'] === 'admin') ? 'selected' : ''; ?>>Admin</option>
                         </select>
                     </div>

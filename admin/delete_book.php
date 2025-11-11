@@ -40,6 +40,6 @@ if (mysqli_query($conn, $delete_query)) {
 mysqli_close($conn);
 
 // 3. Redirect back to the book inventory page
-header("Location: /admin/manage_book.php");
+header("Location: manage_books.php");
 exit();
 ?>
