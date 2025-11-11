@@ -107,5 +107,9 @@ Developed using **PHP**, **MySQL**, and **Bootstrap 5** on an **Apache** stack.
 ## 🪪 License
 This project is licensed under the *MIT License*.
 
-© 2025 Muhammad Irfan (Cik0Xploit)
+**© 2025 Muhammad Irfan (G10D)**
+**© 2025 Adeeb Uzair**
+**© 2025 Jazlan Jubri**
+
+
 ---
