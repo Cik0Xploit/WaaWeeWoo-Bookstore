@@ -147,6 +147,7 @@ $fullname = $_SESSION['fullname'] ?? 'Admin';
                 echo "<tr>
                             <th>ID</th>
                             <th>Category Name</th>
+                            <th>Description</th>
                             <th class='text-end'>Actions</th>
                         </tr>";
                 echo "</thead>";
@@ -156,6 +157,7 @@ $fullname = $_SESSION['fullname'] ?? 'Admin';
                     echo"<tr>";
                     echo"<td><strong>#" . htmlspecialchars($row['id']) . "</strong></td>";
                     echo"<td><span class='badge bg-primary'>" . htmlspecialchars($row['name']) . "</span></td>";
+                    echo"<td>" . htmlspecialchars($row['description'] ?: 'No description') . "</td>";
                     echo"<td class='text-end'>
                             <div class='btn-group' role='group'>
                                 <a href='edit_category.php?id=" . $row['id'] . "' class='btn btn-sm btn-outline-secondary' title='Edit Category'><i class='fas fa-edit'></i></a>

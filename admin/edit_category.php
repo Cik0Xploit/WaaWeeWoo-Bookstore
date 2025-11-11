@@ -34,13 +34,14 @@ if (!$category) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
 
     if (empty($name)) {
         $error = "Category name is required.";
     } else {
-        $update_query = "UPDATE categories SET name = ? WHERE id = ?";
+        $update_query = "UPDATE categories SET name = ?, description = ? WHERE id = ?";
         $update_stmt = mysqli_prepare($conn, $update_query);
-        mysqli_stmt_bind_param($update_stmt, "si", $name, $id);
+        mysqli_stmt_bind_param($update_stmt, "ssi", $name, $description, $id);
 
         if (mysqli_stmt_execute($update_stmt)) {
             $_SESSION['message'] = "Category '{$name}' updated successfully!";
@@ -89,6 +90,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="name">Category Name:</label>
                         <input type="text" id="name" name="name" value="<?= htmlspecialchars($category['name']) ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" rows="3" placeholder="Enter category description"><?= htmlspecialchars($category['description']) ?></textarea>
                     </div>
 
                     <div class="form-actions">

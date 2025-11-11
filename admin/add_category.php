@@ -17,12 +17,13 @@ $success = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $category = mysqli_real_escape_string($conn, $_POST['name']);
-    
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
+
     if (empty($category)) {
-        $error = "Category is a required fields.";
+        $error = "Category name is a required field.";
     } else {
-        $query = "INSERT INTO categories (name) VALUES ('$category')";
-        
+        $query = "INSERT INTO categories (name, description) VALUES ('$category', '$description')";
+
         if (mysqli_query($conn, $query)) {
             $_SESSION['message'] = "New Category '{$category}' successfully added!";
             header("Location: manage_category.php"); // Redirect to inventory after success
@@ -71,6 +72,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label for="name">Category Name:</label>
                     <input type="text" id="name" name="name" placeholder="Enter category name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" placeholder="Enter category description" rows="3"></textarea>
                 </div>
 
                 <div class="form-actions">
